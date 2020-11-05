@@ -22,6 +22,6 @@ https://github.com/nuriel99/Cost_Manager_MobileA_pp
 https://youtu.be/sCeSGA7MBiM
 
 
-<img src="image/screen1.png"  width="200">
-<img src="image/screen2.png"  width="200">
-<img src="image/screen3.png"  width="200">
+<img src="image/screen1.png"  width="400">  <br>
+<img src="image/screen2.png"  width="400">  <br>
+<img src="image/screen3.png"  width="400">  <br>
