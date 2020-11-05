@@ -1,7 +1,5 @@
 # Cost Manager Mobile App
 
-# Mail Delivery System
-
 ### Introduction<br>
 This application is for a management package delivery system. <br>
 It divided into 3 parts: <br>
@@ -15,10 +13,10 @@ then he gives him the packages. <br>
 SQLite
 
 ### Technology 
-JAVA , Swing
+JAVA , CSS, HTML,JQURYMOBILE.
 
 ### GIT
-https://github.com/nuriel99/Mail_Delivery_System
+https://github.com/nuriel99/Cost_Manager_MobileA_pp
 
 ### Youtube
 https://youtu.be/sCeSGA7MBiM
