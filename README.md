@@ -1,9 +1,12 @@
 # Cost Manager Mobile App
 
 ### Introduction<br>
-This application will help you to manage your expenses. 
-On Add Item page, you can save your expenses and manage it.
-On View Report page, you can view your expenses through a colorful graph in percentage and cost.
+This application will help you to manage your expenses. <br>
+
+On Add Item page, you can save your expenses and manage it.<br>
+
+On View Report page, you can view your expenses through a colorful graph in percentage and cost. <br>
+
 
 ### Database 
 
