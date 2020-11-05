@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="myScript.js"></script>
+    <link rel="stylesheet" href="themes/Bege.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+</head>
+
+<body>
+<!-- Start of first page :main -->
+<div data-role="page" id="main" data-theme="d">
+    <div data-role="header">
+        <h1>Cost Manager</h1>
+    </div><!-- /header -->
+    <div data-role="content" >
+        <p>Introduction</p>
+        <p>This application will help you to manage your expenses </p>
+        <p>On Add Item page you can save your expenses and manage it</p>
+        <p>On View Report page you can view your expenses through a colorful
+            graph in percentage and cost</p>
+        <!-- image on the main page -->
+        <img src="file:///android_asset/coins.jpg" width="100%" height="100%">
+
+    </div><!-- /content -->
+    <div data-role="footer" data-position="fixed">
+        <!-- navigation bar for the main page -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#main" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
+                <li><a href="#add" data-icon="plus" >Add Item</a></li>
+                <li><a href="#report" data-icon="eye">View Report</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div>
+
+<!-- Start of second page :add item -->
+<div data-role="page" id="add" data-theme="d">
+    <div data-role="header">
+        <h1>Add Item</h1>
+    </div><!-- /header -->
+    <div data-role="content" >
+        <!-- label for item name--->
+        <p><label for="itemname">Item name :</label>
+            <!-- text field for item name--->
+            <input type="text" name="itemname" id="itemname" placeholder="Enter item name" required></p>
+
+        <p><div class="ui-field-contain">
+        <!-- label for category--->
+        <label for="category">Category :</label>
+        <!-- drop down list for category--->
+        <select name="category" id="category" onChange="getCategory(this);" required>
+            <option value='' selected disabled></option>
+            <option value="1">Food</option>
+            <option value="2">Furnitures</option>
+            <option value="3">Home Tax</option>
+            <option value="4">Mortgage</option>
+            <option value="5">Fuel</option>
+            <option value="6">Car Fix</option>
+            <option value="7">Water</option>
+            <option value="8">Electric</option>
+            <option value="9">Phone</option>
+            <option value="10">Internet</option>
+            <option value="11">Gas</option>
+            <option value="12">Closes</option>
+            <option value="13">Etc</option>
+        </select>
+    </div></p>
+
+        <!-- label for item cost--->
+        <p><label for="cost">Cost :</label>
+            <!-- text field for item cost--->
+            <input type="number" name="cost" id="cost" placeholder="Enter cost" pattern="[0-9]+" size="20" required></p>
+
+        <!-- label for item date--->
+        <p><label for="date">Date</label>
+            <!-- text field for item date--->
+            <input type="date" data-clear-btn="false" name="date" id="date"  required></p>
+        <!-- button for adding item to list--->
+        <input type="submit" name="additem" id="additem" value="Add Item" data-inline="true" onclick="fetchItem()" required>
+        <!-- button for showing list of items--->
+        <input type="button" name="showitems" id="showitems" value="Show Items" data-inline="true" onclick="showItemsUI()" required>
+
+        <!-- Listview of items-->
+        <ul id="itemsList" data-role="listview" data-inset="true"  >
+        </ul>
+    </div><!-- /content -->
+    <div data-role="footer"  data-position="fixed">
+        <!-- navigation bar for the add page -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#main" data-icon="home">Home</a></li>
+                <li><a href="#add" data-icon="plus" class="ui-btn-active ui-state-persist">Add Item</a></li>
+                <li><a href="#report" data-icon="eye">View Report</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div>
+
+<!-- Start of third page :view report -->
+<div data-role="page" id="report" data-theme="d">
+    <div data-role="header">
+        <h1>View Report</h1>
+    </div><!-- /header -->
+    <div data-role="content"  >
+        <!-- Styles -->
+        <style>
+body { background-color: #30303d; color: #fff; }
+#chartdiv {
+  width: 100%;
+  height: 650px;
+}
+</style>
+
+        <div class="ui-field-contain">
+            <!-- label for choosing a year--->
+            <p><label for="year">Choose a year :</label>
+                <!-- drop down list for choosing a year--->
+                 <select name="year" id="year" onChange="getYear(this);" required>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+        </select></p>
+            <!-- label for choosing starting month--->
+            <p><label for="fromdate">Choose starting month :</label>
+                <!-- drop down list for choosing starting month--->
+                 <select name="fromdate" id="fromdate" onChange="getFromDate(this);" required>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select></p>
+            <!-- label for choosing ending month--->
+            <p><label for="todate">Choose ending month :</label>
+                <!-- drop down list for choosing ending month--->
+                <select name="todate" id="todate" onChange="getToDate(this);" required>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select></p>
+        <!-- button for showing detailed graph--->
+        <input type="submit" name="show" id="show" value="Show" data-inline="true" onclick="getReportItems()" required>
+    </div>
+        <!-- graph location -->
+        <div id="chartdiv"></div>
+
+    </div><!-- /content -->
+    <div data-role="footer"  data-position="fixed">
+        <!-- navigation bar for the report page -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#main" data-icon="home" >Home</a></li>
+                <li><a href="#add" data-icon="plus" >Add Item</a></li>
+                <li><a href="#report" data-icon="eye" class="ui-btn-active ui-state-persist">View Report</a></li>
+            </ul>
+        </div><!-- /navbar -->
+
+    </div><!-- /footer -->
+</div>
+</body>
+</html>
